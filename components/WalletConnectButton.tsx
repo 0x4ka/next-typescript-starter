@@ -1,5 +1,9 @@
 import { useAddress, useDisconnect, useMetamask } from "@thirdweb-dev/react";
 
+const style = {
+    button: "bg-[#ffffff] hover:bg-[#cccccc] text-black font-bold py-2 px-8 rounded-full ml-8"
+}
+
 export const WalletConnectButton = () => {
     const address = useAddress();
     const connectWithMetamask = useMetamask();
@@ -7,12 +11,9 @@ export const WalletConnectButton = () => {
     return (
         <div>
             {address ? (
-            <>
-                <button onClick={disconnectWallet}>Disconnect Wallet</button>
-                <p>Your address: {address}</p>
-            </>
+            <button className={style.button} onClick={disconnectWallet}>{address.substring(0,6)}...</button>
         ) : (
-            <button onClick={connectWithMetamask}>Connect with Metamask</button>
+            <button className={style.button} onClick={connectWithMetamask}>Connect</button>
         )}
         </div>
     );
